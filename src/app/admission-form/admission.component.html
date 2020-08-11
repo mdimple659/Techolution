@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h5 style="text-align: center;">School Admission Form</h5>
+      <form [formGroup]="admissionForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label>
+            Name
+          </label>
+          <input class="form-control" type="text" formControlName="name">
+
+
+          <div *ngIf="admissionForm.get('name').errors  && isSubmitted">
+            <div *ngIf="admissionForm.get('name').hasError('maxlength')">
+              <span style="color: red;">Only 20 characters allowed.</span>
+            </div>
+            <div *ngIf="admissionForm.get('name').hasError('pattern')">
+              <span style="color: red;">Only alphabets allowed.</span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label>
+            Last name
+          </label>
+          <input class="form-control" type="text" formControlName="lastname">
+
+          <div *ngIf="admissionForm.get('lastname').errors && isSubmitted">
+            <div *ngIf="admissionForm.get('lastname').hasError('maxlength')">
+              <span style="color: red;">Only 20 characters allowed.</span>
+            </div>
+            <div *ngIf="admissionForm.get('lastname').hasError('pattern')">
+              <span style="color: red;">Only alphabets allowed.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>
+            Class
+          </label>
+          <input class="form-control" id="name" type="text" formControlName="class">
+          <div *ngIf="admissionForm.get('class').errors  && isSubmitted">
+            <div *ngIf="admissionForm.get('class').hasError('pattern')">
+              <span style="color: red;">Only alphabets and numbers allowed.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>
+            Year of passing
+          </label>
+          <input class="form-control" id="name" type="number" formControlName="year">
+          <div *ngIf="admissionForm.get('year').errors && isSubmitted">
+            <div *ngIf="admissionForm.get('year').hasError('pattern')">
+              <span style="color: red;">Only numbers allowed.</span>
+            </div>
+            <div *ngIf="(admissionForm.get('year').touched || admissionForm.get('year').dirty) 
+              && admissionForm.get('year').invalid">
+              <span style="color: red;">Year should not be greater than 2017.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>
+            Percentage of marks
+          </label>
+          <input class="form-control" id="name" type="number" formControlName="marks">
+          <div *ngIf="admissionForm.get('marks').errors && isSubmitted">
+            <div *ngIf="admissionForm.get('marks').hasError('pattern')">
+              <span style="color: red;">Only numbers allowed.</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-success" type="submit">Submit</button>
+      </form>
+
+    </div>
+  </div>
+</div>
